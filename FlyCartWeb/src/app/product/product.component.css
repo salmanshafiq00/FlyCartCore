@@ -1,0 +1,11 @@
+span {
+    color: red;
+}
+
+.ng-dirty.ng-touched.invalid{
+    border-color: red;
+}
+
+.ng-dirty.ng-touched.valid{
+    border-color: green;
+}

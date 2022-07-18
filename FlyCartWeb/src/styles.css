@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+span {
+    color: red;
+}
+
+input.ng-dirty.ng-touched.ng-invalid{
+    border-color: red;
+}
+
+input.ng-dirty.ng-touched.ng-valid{
+    border-color: green;
+}

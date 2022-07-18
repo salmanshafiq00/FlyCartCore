@@ -1,0 +1,49 @@
+<p>product-form works!</p>
+<form class="container" #productForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="productID" class="form-label">Product ID</label>
+        <input type="number" name="productID" [(ngModel)]="product.productID" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="productName" class="form-label">product Name</label>
+        <input  name="productName" [(ngModel)]="product.productName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="categoryID" class="form-label">Category ID</label>
+        <input type="number"  name="categoryID" [(ngModel)]="product.categoryID" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="createdDate" class="form-label">Create Date</label>
+        <input type="date" name="createdDate" [(ngModel)]="product.createdDate" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="shortDescription" class="form-label">Short Description</label>
+        <input  name="shortDescription" [(ngModel)]="product.shortDescription" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="longDescription" class="form-label">Long Description</label>
+        <input  name="longDescription" [(ngModel)]="product.longDescription" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" name="price" [(ngModel)]="product.price" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="images" class="form-label">Images</label>
+        <input  name="images" [(ngModel)]="product.images" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="stock" class="form-label">Stock</label>
+        <input  name="stock" [(ngModel)]="product.stock" class="form-control">
+    </div>
+
+    <button>Submit</button>
+</form>

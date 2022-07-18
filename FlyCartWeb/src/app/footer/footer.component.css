@@ -1,0 +1,10 @@
+footer {
+    
+    width: 100%;
+    min-height: 100px;
+    color: smoke;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    bottom: 0;
+}

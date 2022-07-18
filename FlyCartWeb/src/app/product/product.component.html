@@ -1,0 +1,200 @@
+<div class=" mt-2 container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <button routerLink="productForm" class="btn btn-sm btn-info">
+        Create
+      </button>
+      <table class="table table-striped table-hover table-bordered container">
+        <thead>
+          <tr>
+            <th>ID </th>
+            <th>ProductName</th>
+            <th>CategoryID</th>
+            <th>CreatedDate</th>
+            <th>ShortDescription</th>
+            <!-- <th>LongDescription</th> -->
+            <th>Price</th>
+            <th>Weight</th>
+            <th>Images</th>
+            <th>Stock</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tr *ngFor="let product of products">
+          <td appBoldElement>{{ product.productID }}</td>
+          <td>{{ product.productName }}</td>
+          <td *ngIf="(product.categoryID ? categories[1] : categories[2])">
+            {{ product.categoryID | catergoryName}}
+          </td>
+          <td>{{ product.createdDate | date }}</td>
+          <td>{{ product.shortDescription }}</td>
+         
+          <td>{{ product.price }}</td>
+          <td>{{ product.weight | weightFilter }}</td>
+          <td>
+            <img src="{{ product.images}}" alt="" width="50" height="50">
+          </td>
+          <td class="text-center">
+          <input
+            type="checkbox"
+            name="stock"
+            class="form-check-input"
+            [value]="product.stock"
+            [checked]="product.stock"
+          />
+        </td>
+          <td>
+            <a
+              class="btn btn-sm btn-primary pr-1"
+              (click)="populateProduct(product)"
+              >Edit</a
+            >
+            <a
+              class="btn btn-sm btn-danger"
+              (click)="deleteProduct(product.productID)"
+              >Delete</a
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-4">
+      <form
+        novalidate
+        class="container"
+        #productForm="ngForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="form-group">
+          <label for="productID" class="form-label">Product ID</label>
+          <input
+            type="number"
+            name="productID"
+            #productID="ngModel"
+            [(ngModel)]="product.productID"
+            class="form-control"
+            required
+          />
+          <span *ngIf="productID.invalid && productID && productID.touched"
+            >Field is required</span
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="productName" class="form-label">product Name</label>
+          <input
+            name="productName"
+            [(ngModel)]="product.productName"
+            class="form-control"
+            #productName="ngModel"
+            pattern="^[a-z A-Z]+$"
+            required
+          />
+          <span
+            *ngIf="
+              productName.dirty && productName.invalid && productName.touched
+            "
+            >Field is required or letter</span
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="categoryID" class="form-label">Category ID</label>
+
+          <select
+            name="categoryID"
+            [(ngModel)]="product.categoryID"
+            class="form-control"
+          >
+            <option
+              *ngFor="let category of categories"
+              [value]="category.categoryID"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="createdDate" class="form-label" required>Create Date</label>
+          <input
+            type="date"
+            name="createdDate"
+            [(ngModel)]="product.createdDate"
+            class="form-control"
+          />
+          <span
+            *ngIf="
+              productName.dirty && productName.invalid && productName.touched
+            "
+            >Field is required or letter</span
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="shortDescription" class="form-label"
+            >Short Description</label
+          >
+          <input
+            name="shortDescription"
+            [(ngModel)]="product.shortDescription"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            name="price"
+            [(ngModel)]="product.price"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="weight" class="form-label"
+            >Weight</label
+          >
+          <input
+            name="weight"
+            [(ngModel)]="product.weight"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="images" class="form-label">Image</label>
+          <img src="{{product.images}}" #alt="" height="60px" width="60px" class="ml-2">
+          <!-- <input type="hidden" name="images" [value]="fileName" [(ngModel)]="product.images">  -->
+          <input
+            type="file"
+            name="images"
+            [(ngModel)]="product.images"
+            class="form-control"
+            (change)="handleFile($event)"
+          />
+        </div>
+
+        <div class="form-check form-check-inline">
+          <label for="stock" class="form-check-label">Stock</label>
+          <input
+            type="checkbox"
+            name="stock"
+            [(ngModel)]="product.stock"
+            class="form-check-input ml-3"
+           
+          />
+        </div>
+        <div>
+
+          <input type="submit" class="btn btn-primary" 
+          [disabled]="productForm.invalid" 
+          [value]="buttonMode ? 'Insert' : 'Update'" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

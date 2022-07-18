@@ -1,0 +1,91 @@
+<button routerLink="categoryForm" class="btn btn-sm btn-info my-2 ml-5">
+  Create
+</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <table
+        class="table table-bordered table-condensed table-striped table-hover container"
+      >
+        <thead>
+          <tr>
+            <th>Category ID</th>
+            <th>Name</th>
+            <th>IsActive</th>
+            <th>IsDelete</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tr *ngFor="let category of categories">
+          <td>{{ category.categoryID }}</td>
+          <td>{{ category.name }}</td>
+          <td>{{ category.isActive }}</td>
+          <td>{{ category.isDelete }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary ml-2 pr-1" (click)="populateCategory(category)" style="margin-right: 5px;">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteCategory(category.categoryID)">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="" class="form-label"> Category ID</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="categoryID"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="" class="form-label"> Category Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label for="" class="form-label"> Description</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-check form-check-inline">
+          <label for="" class="form-check-label">IsActivbe</label>
+          <input
+            type="checkbox"
+            class="form-check-input ml-3"
+            formControlName="isActive"
+            value="true"
+          />
+
+          <label for="" class="form-check-label">IsDelete</label>
+          <input
+            type="checkbox"
+            class="form-check-input ml-3"
+            formControlName="isDelete"
+            value="true"
+          />
+        </div>
+        <div>
+          <button [disabled]="categoryForm.invalid" class="btn btn-primary"  [value]="buttonMode ? 'Insert' : 'Update'">
+            Create
+          </button>
+        </div>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </form>
+    </div>
+
+  </div>
+</div>
+
